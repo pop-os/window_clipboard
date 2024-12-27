@@ -45,13 +45,7 @@ impl<T: mime::AsMimeTypes> AsMimeTypes for DataWrapper<T> {
 
 impl smithay_clipboard::dnd::RawSurface for DndSurface {
     unsafe fn get_ptr(&mut self) -> *mut c_void {
-        // XXX won't panic because this is only called once before it could be
-        // cloned
-        Arc::get_mut(&mut self.0)
-            .unwrap()
-            .window_handle()
-            .unwrap()
-            .get_ptr()
+        self.0.window_handle().unwrap().get_ptr()
     }
 }
 
