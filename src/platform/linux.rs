@@ -74,7 +74,6 @@ impl ClipboardProvider for Clipboard {
     {
         match self {
             Clipboard::Wayland(c) => {
-                dbg!("linux write data...");
                 Some(c.write_data::<ClipboardStoreData<T>>(contents))
             }
             Clipboard::X11(_) => None,
